@@ -1,6 +1,6 @@
 # This is an emoji converter program
 
-def emoji_convert(message):
+def convert(message):
     message = message.split()
     for word in message:
         if word == ":)":
@@ -14,4 +14,4 @@ def emoji_convert(message):
 
 
 message = input()
-emoji_convert(message)
+convert(message)
