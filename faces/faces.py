@@ -13,5 +13,9 @@ def convert(message):
     print()
 
 
-message = input()
-convert(message)
+def main():
+    message = input()
+    convert(message)
+
+
+main()
