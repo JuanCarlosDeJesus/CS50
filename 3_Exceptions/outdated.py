@@ -22,20 +22,27 @@ def mon(MM):
     for k,v in mm.items():
         if MM in v:
             return k
+
 def day(DD):
     return DD.strip(",")
 
-while True:
-    try:
-        prompt = input("Date: ").strip()
-        
-        if " " in prompt:
-            MM, DD, YY = prompt.split(" ")
-            print(f"{YY}-{mon(MM)}-{day(DD)}")
-            break
-        elif "/" in prompt:
-            MM, DD, YY = prompt.split("/")
-            print(f"{YY}-{mon(MM)}-{day(DD)}")
-            break
-    except:
-        pass
+def main():
+    while True:
+        try:
+            prompt = input("Date: ").strip()
+            
+            if " " in prompt:
+                MM, DD, YY = prompt.split(" ")
+                if MM.isalpha():
+                    print(f"{YY}-{mon(MM)}-{day(DD)}")
+                else:
+                    continue
+                break
+            elif "/" in prompt:
+                MM, DD, YY = prompt.split("/")
+                print(f"{YY}-{mon(MM)}-{day(DD)}")
+                break
+        except:
+            pass
+
+main()
