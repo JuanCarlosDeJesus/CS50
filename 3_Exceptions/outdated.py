@@ -24,9 +24,13 @@ def mon(MM):
             return k
 
 def day(DD):
-    return DD.strip(",")
+    if 1 <= DD >= 31:
+        if "," in DD:
+            return DD.strip(",")
+        else:
+            return DD
 
-def main():
+def get_date():
     while True:
         try:
             prompt = input("Date: ").strip()
@@ -44,5 +48,9 @@ def main():
                 break
         except:
             pass
+
+def main():
+    if __name__ == "__main__":
+        get_date()
 
 main()
