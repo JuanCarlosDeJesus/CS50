@@ -19,38 +19,41 @@ def mon(MM):
         "11":["November","11"],
         "12":["December","12"]
     }
+
     for k,v in mm.items():
         if MM in v:
             return k
 
+
 def day(DD):
-    if 1 <= DD >= 31:
-        if "," in DD:
-            return DD.strip(",")
-        else:
-            return DD
+    if "," in DD:
+        DD = DD.strip(",")
+
+    if 1 <= int(DD) <= 9:
+        return "0" + DD
+    elif 10 <= int(DD) <= 31:
+        return DD
+
 
 def get_date():
     while True:
-        try:
-            prompt = input("Date: ").strip()
-            
-            if " " in prompt:
-                MM, DD, YY = prompt.split(" ")
-                if MM.isalpha():
-                    print(f"{YY}-{mon(MM)}-{day(DD)}")
-                else:
-                    continue
-                break
-            elif "/" in prompt:
-                MM, DD, YY = prompt.split("/")
-                print(f"{YY}-{mon(MM)}-{day(DD)}")
-                break
-        except:
-            pass
+        prompt = input("Date: ").strip()
+        if " " in prompt and "," in prompt:
+            MM, DD, YY = prompt.split(" ")
+            if MM.isalpha():
+                if mon(MM) is not None and day(DD) is not None:
+                    return f"{YY}-{mon(MM)}-{day(DD)}"
+        elif "/" in prompt:
+            MM, DD, YY = prompt.split("/")
+            if not MM.isalpha():
+                if mon(MM) is not None and day(DD) is not None:
+                    return f"{YY}-{mon(MM)}-{day(DD)}"
+
 
 def main():
-    if __name__ == "__main__":
-        get_date()
+    dt = get_date()
+    print(dt)
 
-main()
+
+if __name__ == "__main__":
+    main()
